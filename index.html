@@ -1,0 +1,761 @@
+import { useMemo, useState } from "react";
+
+type NavItem = {
+  href: string;
+  label: string;
+};
+
+type StatItem = {
+  value: string;
+  label: string;
+};
+
+type BikeSafetyItem = {
+  title: string;
+  titleZh: string;
+  description: string;
+  descriptionZh: string;
+};
+
+type StoryItem = {
+  id: string;
+  title: string;
+  description: string;
+};
+
+type ProductCard = {
+  title: string;
+  titleZh: string;
+  description: string;
+  descriptionZh: string;
+  meta: string;
+  metaZh: string;
+  models: string[];
+  viewHref: string;
+  viewLabel: string;
+  viewLabelZh: string;
+  pdfLabel: string;
+  pdfLabelZh: string;
+};
+
+type UpdateItem = {
+  badge: string;
+  date: string;
+  title: string;
+  description: string;
+};
+
+type BlogPost = {
+  id: string;
+  category: string;
+  date: string;
+  title: string;
+  titleZh: string;
+  summary: string;
+  summaryZh: string;
+  body: string[];
+  bodyZh: string[];
+  readTime: string;
+};
+
+export default function TerasilicOnepageTemplateV2() {
+  const navItems: NavItem[] = [
+    { href: "#bike-safety", label: "Bike Safety" },
+    { href: "#about", label: "About" },
+    { href: "#solutions", label: "Solutions" },
+    { href: "#blog", label: "Blog" },
+    { href: "#newsletter", label: "Newsletter" },
+  ];
+
+  const statItems: StatItem[] = [
+    { value: "24GHz", label: "Core focus in integrated radar solutions" },
+    { value: "CAN Bus", label: "Integration-ready for smart cycling ecosystems" },
+    { value: "B2B", label: "Designed for OEM, partners, and industrial customers" },
+  ];
+
+  const proofItems = [
+    "Reliable mmWave partner",
+    "Bike safety focus",
+    "One-stop integration",
+    "Product + system capability",
+  ];
+
+  const bikeSafetyItems: BikeSafetyItem[] = [
+    {
+      title: "Bike Radar Solutions",
+      titleZh: "自行車雷達安全方案",
+      description:
+        "24GHz radar detects vehicles approaching from behind and supports safer riding through timely warnings.",
+      descriptionZh:
+        "24GHz 雷達可偵測後方來車，透過即時警示提升騎乘安全，這是首頁最值得優先強調的應用主軸。",
+    },
+    {
+      title: "Radar + Vision AI Fusion",
+      titleZh: "雷達與視覺 AI 融合",
+      description:
+        "Fuses radar and vision to improve environmental understanding and alert reliability in real riding conditions.",
+      descriptionZh:
+        "把雷達與影像感測結合，在真實騎乘環境中提升環境理解能力與警示可靠性。",
+    },
+    {
+      title: "Bike Radar E-Mirror",
+      titleZh: "自行車電子雷達後視鏡",
+      description:
+        "A representative system concept that combines radar, camera, and display into a clearer rear-awareness experience.",
+      descriptionZh:
+        "作為代表性系統方案，整合雷達、攝影機與顯示器，把後方感知轉成更直覺的騎乘體驗。",
+    },
+  ];
+
+  const storyItems: StoryItem[] = [
+    {
+      id: "01",
+      title: "Reliable partner for millimeter-wave integrated system solutions",
+      description:
+        "TeraSilIC positions itself as a reliable partner for millimeter-wave integrated system solutions, built on advanced CMOS manufacturing and high-integration 24GHz product capability.",
+    },
+    {
+      id: "02",
+      title: "From transceivers to modules, sensors, and systems",
+      description:
+        "The value proposition is not only IC design. It extends from fully integrated transceivers to multi-chip packages, sensors, modules, and complete application systems.",
+    },
+    {
+      id: "03",
+      title: "One-stop service for B2B customers",
+      description:
+        "For an OEM or ecosystem partner, the commercial value comes from one-stop integration, practical design service, and a clearer route from chip technology to deployable products.",
+    },
+  ];
+
+  const pdfItems: ProductCard[] = [
+    {
+      title: "mmWave IC Design",
+      titleZh: "毫米波 IC 設計",
+      description:
+        "Centered on 24GHz radar transceivers and radar signal processors, ideal for datasheets and product briefs.",
+      descriptionZh:
+        "以 24GHz 雷達收發晶片與雷達訊號處理器為核心，適合整理成 datasheet 與 product brief。",
+      meta: "IC / Datasheet",
+      metaZh: "晶片 / 規格書",
+      models: ["TS24GTR11S-P", "TS24GTR12S-P", "TS32F401CBU7"],
+      viewHref: "https://www.terasilic.com/en-product-24ghz-ts24gtr11sp",
+      viewLabel: "View Product Page",
+      viewLabelZh: "查看產品頁",
+      pdfLabel: "Download IC PDF",
+      pdfLabelZh: "下載 IC PDF",
+    },
+    {
+      title: "Front-end Module",
+      titleZh: "前端模組",
+      description:
+        "A series of 24GHz front-end modules suitable for brochure-style downloads by architecture and use case.",
+      descriptionZh:
+        "多款 24GHz front-end modules 適合依架構與應用整理成系列型錄，便於業務與合作夥伴下載。",
+      meta: "Module / Brochure",
+      metaZh: "模組 / 型錄",
+      models: ["FEM12-F06", "FEM11-F09", "FEM12-F14"],
+      viewHref: "https://www.terasilic.com/en-product-fem12f06",
+      viewLabel: "View Product Page",
+      viewLabelZh: "查看產品頁",
+      pdfLabel: "Download Module PDF",
+      pdfLabelZh: "下載 Module PDF",
+    },
+    {
+      title: "Radar Sensors",
+      titleZh: "雷達感測器",
+      description:
+        "Suitable for application briefs focused on compact integration, presence detection, and practical sensing deployment.",
+      descriptionZh:
+        "適合整理成以 presence detection、compact integration 與實務部署為主的感測器應用簡報。",
+      meta: "Sensor / Line Card",
+      metaZh: "感測器 / 產品線卡",
+      models: ["SenseBoost12-PH12", "SenseBoost11-PU02", "SenseBoost11-PH07"],
+      viewHref: "https://www.terasilic.com/24ghz-radar-sensor-senseboost12-ph12",
+      viewLabel: "View Product Page",
+      viewLabelZh: "查看產品頁",
+      pdfLabel: "Download Sensor PDF",
+      pdfLabelZh: "下載 Sensor PDF",
+    },
+    {
+      title: "Bike Safety Systems",
+      titleZh: "自行車安全系統",
+      description:
+        "System-level bike safety solutions built around rear detection, alerting, and rider awareness.",
+      descriptionZh:
+        "以後方來車偵測、雷達警示與騎乘資訊整合為主的 system-level bike safety solution，更適合放在首頁主推。",
+      meta: "Bike Safety / Solution Brief",
+      metaZh: "自行車安全 / 解決方案簡介",
+      models: ["Bike Radar E-Mirror", "Bike Radar Sensor Solution", "CAN Bus Integrated Safety Radar"],
+      viewHref: "https://www.terasilic.com/system-bike-radar-e-mirror",
+      viewLabel: "View Product Page",
+      viewLabelZh: "查看產品頁",
+      pdfLabel: "Download Bike Safety PDF",
+      pdfLabelZh: "下載 Bike Safety PDF",
+    },
+  ];
+
+  const updateItems: UpdateItem[] = [
+    {
+      badge: "Partnership",
+      date: "Recent",
+      title: "BAFANG Empowers Smart Cycling Ecosystem",
+      description:
+        "A stronger B2B message: CAN Bus integration, ecosystem compatibility, and safety radar value inside a real partner platform.",
+    },
+    {
+      badge: "Event",
+      date: "2026.03.02",
+      title: "Meet TeraSilIC at Taipei Cycle 2026",
+      description:
+        "Highlights Bike Safety System, 24GHz bike radar, Radar + Vision AI Fusion, and micromobility functional safety.",
+    },
+    {
+      badge: "Idea",
+      date: "2026.01.27",
+      title: "From Survival to Prevention",
+      description:
+        "An editorial direction that helps move the brand from product listing to category thinking and industry leadership.",
+    },
+  ];
+
+  const blogPosts: BlogPost[] = [
+    {
+      id: "bike-safety-future",
+      category: "Featured Post",
+      date: "2026.03.02",
+      title: "How radar is reshaping bike safety systems",
+      titleZh: "雷達如何重新定義自行車安全系統",
+      summary:
+        "This blog layout is designed for actual reading, not only for listing headlines. It turns the homepage into a place where B2B visitors can understand the product story in depth.",
+      summaryZh:
+        "這個 blog 版型不是只列出標題，而是讓首頁具備真正可閱讀的內容深度，讓 B2B 訪客能在同一頁理解產品故事。",
+      body: [
+        "For a B2B website, a strong first impression is not only visual. It comes from showing a clear business proposition and then offering a readable explanation of why the solution matters. Bike safety is the best example for TeraSilIC because it connects the chip, module, system, and ecosystem story into one application narrative.",
+        "That is why the homepage should not rely only on short news cards. It should also include an editorial reading area where buyers, partners, and engineering stakeholders can understand how radar, alerts, and rider awareness become a complete safety experience.",
+        "In this structure, blog content becomes part of the sales journey. It supports credibility, category education, and solution framing while keeping the experience close to a modern B2B product website.",
+      ],
+      bodyZh: [
+        "對 B2B 網站來說，第一印象不只是視覺，而是能不能在很短時間內說清楚商業價值，接著再用可閱讀內容把方案講透。對 TeraSilIC 而言，Bike Safety 是最適合被放大的主題，因為它把晶片、模組、系統與生態整合串成一個完整應用故事。",
+        "因此首頁不應只依賴短篇 news cards，而要有真正能閱讀的 editorial 區塊，讓客戶、夥伴與工程端角色理解雷達、警示與 rider awareness 如何組成完整安全體驗。",
+        "當內容這樣被設計時，blog 就不只是附屬頁面，而是銷售旅程的一部分：它同時支撐品牌可信度、類別教育與 solution framing，也更接近成熟的 B2B 產品網站。",
+      ],
+      readTime: "5 min read",
+    },
+    {
+      id: "bafang-ecosystem",
+      category: "Partnership",
+      date: "Recent",
+      title: "Why ecosystem integration changes the story",
+      titleZh: "為什麼生態整合會改變產品敘事",
+      summary:
+        "A B2B website should show more than product specs. It should show how the solution fits into a partner ecosystem.",
+      summaryZh:
+        "B2B 網站不該只展示規格，而要說清楚方案如何進入夥伴生態系與實際商業場景。",
+      body: [
+        "When radar data can move into a wider cycling platform through CAN Bus, the product narrative becomes stronger. It is no longer only about sensor capability. It becomes a system story about compatibility, scalability, and better user experience.",
+        "This kind of article is especially important for OEM and platform customers, because they need to understand integration value before they evaluate component details.",
+      ],
+      bodyZh: [
+        "當雷達資料能透過 CAN Bus 進入更大的自行車平台，產品故事就會變得更強。它不再只是 sensor capability，而是 compatibility、scalability 與 user experience 的系統級故事。",
+        "這種文章對 OEM 與平台型客戶特別重要，因為他們通常會先評估整合價值，再深入看元件細節。",
+      ],
+      readTime: "4 min read",
+    },
+    {
+      id: "radar-vision-fusion",
+      category: "Technology",
+      date: "2026.01.27",
+      title: "Why Radar + Vision AI Fusion matters",
+      titleZh: "為什麼雷達與視覺 AI 融合重要",
+      summary:
+        "A good B2B homepage should make complex sensing ideas easier to understand through editorial content.",
+      summaryZh:
+        "好的 B2B 首頁應該透過 editorial 內容，把複雜感測概念講得更容易理解。",
+      body: [
+        "Real riding conditions are dynamic. Radar contributes motion and distance awareness, while vision adds richer scene interpretation. Together they can support more robust and intuitive safety experiences.",
+        "On a one-page site, this kind of topic works best when visitors can read it without leaving the homepage. That keeps the experience fluid while still providing deeper context.",
+      ],
+      bodyZh: [
+        "真實騎乘環境是高度動態的。雷達擅長距離與移動感知，視覺則補足場景理解。兩者結合後，更有機會形成穩定且直覺的安全體驗。",
+        "在一頁式網站中，這類主題最適合讓訪客在首頁直接閱讀，不必跳頁，也能保留更深的技術語境。",
+      ],
+      readTime: "3 min read",
+    },
+  ];
+
+  const [selectedBlogId, setSelectedBlogId] = useState<string>(blogPosts[0].id);
+
+  const selectedBlog = useMemo(
+    () => blogPosts.find((post) => post.id === selectedBlogId) ?? blogPosts[0],
+    [blogPosts, selectedBlogId],
+  );
+
+  return (
+    <div id="top" className="min-h-screen bg-[#f5f5f6] text-[#2f3136]">
+      <section className="relative overflow-hidden border-b border-[#e5e7eb] bg-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(216,31,73,0.08),transparent_26%),radial-gradient(circle_at_top_right,rgba(44,121,196,0.08),transparent_26%)]" />
+
+        <div className="relative mx-auto max-w-7xl px-6 py-6 lg:px-10">
+          <div className="flex items-center justify-between rounded-full border border-[#e5e7eb] bg-white/95 px-4 py-3 shadow-sm">
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#2f3136] text-sm font-bold tracking-[0.24em] text-white">
+                TS
+              </div>
+              <div>
+                <div className="text-sm font-semibold tracking-[0.24em] text-[#2f3136]">TERASILIC</div>
+                <div className="text-xs text-[#7a7f87]">Everyone&apos;s mmWave Solution</div>
+              </div>
+            </div>
+
+            <nav className="hidden items-center gap-6 text-sm text-[#6d727a] md:flex">
+              {navItems.map((item) => (
+                <a key={item.href} href={item.href} className="transition hover:text-[#d81f49]">
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          <div className="grid gap-14 py-20 lg:grid-cols-[1.08fr_0.92fr] lg:py-28">
+            <div className="space-y-8">
+              <div className="inline-flex items-center rounded-full border border-[#f3cad4] bg-[#fff3f6] px-4 py-2 text-sm text-[#b91e43]">
+                B2B-focused website direction · brand palette aligned to TeraSilIC
+              </div>
+
+              <div className="space-y-6">
+                <h1 className="max-w-5xl text-5xl font-semibold leading-[1.02] tracking-tight text-[#2f3136] md:text-7xl">
+                  24GHz mmWave solutions
+                  <span className="block text-[#5f656d]">for bike safety and intelligent sensing.</span>
+                </h1>
+                <p className="max-w-2xl text-lg leading-8 text-[#666c75] md:text-xl">
+                  This version is designed like a real B2B company website: clearer positioning, stronger solution framing, more readable thought leadership, and a palette that follows TeraSilIC&apos;s official brand impression more closely.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="#bike-safety"
+                  className="rounded-full bg-[#d81f49] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5"
+                >
+                  Explore Bike Safety
+                </a>
+                <a
+                  href="#solutions"
+                  className="rounded-full border border-[#d6dae0] bg-white px-6 py-3 text-sm font-semibold text-[#2f3136] transition hover:bg-[#fafafa]"
+                >
+                  Download Product Briefs
+                </a>
+              </div>
+
+              <div className="flex flex-wrap gap-3 pt-2">
+                {proofItems.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-full border border-[#e3e5e8] bg-[#fcfcfc] px-4 py-2 text-xs uppercase tracking-[0.2em] text-[#787d85]"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-5 self-end">
+              <div className="rounded-[2rem] border border-[#e5e7eb] bg-white p-7 shadow-[0_24px_70px_rgba(47,49,54,0.08)]">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.22em] text-[#d81f49]">B2B Positioning</p>
+                    <h2 className="mt-3 text-3xl font-semibold leading-tight text-[#2f3136]">
+                      Reliable partner for millimeter-wave integrated system solutions
+                    </h2>
+                  </div>
+                  <div className="rounded-full border border-[#f3cad4] bg-[#fff3f6] px-3 py-1 text-xs font-medium text-[#b91e43]">
+                    24GHz Focus
+                  </div>
+                </div>
+                <p className="mt-5 max-w-lg text-base leading-7 text-[#666c75]">
+                  The homepage should lead with partner value, product capability, and application clarity. Bike safety deserves to be a lead solution, while IC, module, sensor, and system offerings remain clearly structured underneath.
+                </p>
+                <div className="mt-8 grid gap-3">
+                  {[
+                    "Bike Safety System",
+                    "mmWave IC Design",
+                    "Front-end Module",
+                    "Custom Integration Service",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center justify-between rounded-2xl border border-[#eceef1] bg-[#fafafa] px-4 py-4"
+                    >
+                      <span className="text-sm font-medium text-[#2f3136]">{item}</span>
+                      <span className="text-xs uppercase tracking-[0.22em] text-[#9499a1]">Focus</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-3">
+                {statItems.map((item) => (
+                  <div
+                    key={item.value}
+                    className="rounded-[1.6rem] border border-[#e5e7eb] bg-white p-5 shadow-[0_10px_24px_rgba(47,49,54,0.04)]"
+                  >
+                    <div className="text-2xl font-semibold text-[#2f3136]">{item.value}</div>
+                    <p className="mt-2 text-sm leading-6 text-[#6d727a]">{item.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="bike-safety" className="border-t border-[#dbe3ee] bg-[linear-gradient(135deg,#eef5fb_0%,#f8fbfe_55%,#ffffff_100%)]">
+        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+          <div className="mb-12 grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
+            <div>
+              <p className="text-sm uppercase tracking-[0.28em] text-[#2c79c4]">Bike Safety Focus</p>
+              <h2 className="mt-3 text-4xl font-semibold leading-tight text-[#2f3136] md:text-5xl">
+                把 Bike Safety 提升成首頁第一級 solution，
+                <span className="block text-[#5f656d]">而不是只留在 news card 裡。</span>
+              </h2>
+            </div>
+            <p className="max-w-2xl text-base leading-8 text-[#666c75]">
+              Bike safety is where TeraSilIC becomes easiest to understand for B2B buyers. It combines radar capability, system integration, and ecosystem compatibility into one application story that is commercially meaningful.
+            </p>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="rounded-[2.2rem] border border-[#dbe3ee] bg-white p-8 shadow-[0_18px_40px_rgba(47,49,54,0.05)]">
+              <div className="inline-flex items-center rounded-full border border-[#c9dff3] bg-[#eef5fb] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#2c79c4]">
+                Featured application
+              </div>
+              <h3 className="mt-6 text-3xl font-semibold leading-tight text-[#2f3136] md:text-4xl">
+                Safer riding through rear detection, better alerts, and integrated rider awareness.
+              </h3>
+              <p className="mt-5 max-w-2xl text-base leading-8 text-[#666c75]">
+                This section should present bike safety like a flagship B2B solution. It connects rear detection, Radar + Vision AI Fusion, and ecosystem integration into one coherent story that buyers can understand quickly.
+              </p>
+
+              <div className="mt-8 grid gap-4 md:grid-cols-3">
+                {bikeSafetyItems.map((item) => (
+                  <div key={item.title} className="rounded-[1.6rem] border border-[#e6edf5] bg-[#fbfdff] p-5">
+                    <div className="text-lg font-semibold text-[#2f3136]">{item.title}</div>
+                    <div className="mt-1 text-sm font-medium text-[#5f656d]">{item.titleZh}</div>
+                    <p className="mt-4 text-sm leading-7 text-[#5e6670]">{item.description}</p>
+                    <p className="mt-3 text-sm leading-7 text-[#707780]">{item.descriptionZh}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-5">
+              <div className="rounded-[2rem] border border-[#dbe3ee] bg-white p-7 shadow-[0_12px_30px_rgba(47,49,54,0.04)]">
+                <div className="text-sm uppercase tracking-[0.22em] text-[#2c79c4]">Highlighted system</div>
+                <h3 className="mt-4 text-2xl font-semibold text-[#2f3136]">Bike Radar E-Mirror</h3>
+                <p className="mt-4 text-base leading-7 text-[#666c75]">
+                  A representative hero solution for this website: 24GHz radar, camera, and display combined into a clearer rear-awareness experience for everyday cycling and partner integration scenarios.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {[
+                    "24GHz radar",
+                    "rear awareness",
+                    "camera",
+                    "4.3-inch display",
+                  ].map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-[#dbe3ee] bg-[#f3f8fc] px-3 py-2 text-xs font-medium text-[#45637d]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-[2rem] border border-[#d81f49] bg-[#d81f49] p-7 text-white shadow-[0_16px_32px_rgba(216,31,73,0.18)]">
+                <div className="text-sm uppercase tracking-[0.22em] text-white/80">Consultant synthesis</div>
+                <h3 className="mt-4 text-2xl font-semibold">主視覺、主 CTA、solution 故事都要指向 B2B 轉換，而不是只追求科技感。</h3>
+                <p className="mt-4 text-base leading-7 text-white/80">
+                  The best result is not a louder homepage. It is a clearer one: strong business framing, credible solution narrative, readable content, and brand colors that actually look like TeraSilIC.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+          <div className="space-y-5">
+            <p className="text-sm uppercase tracking-[0.28em] text-[#d81f49]">About TeraSilIC</p>
+            <h2 className="text-4xl font-semibold leading-tight text-[#2f3136] md:text-5xl">
+              不是抽象品牌敘事，
+              <span className="block text-[#5f656d]">而是讓 B2B 客戶快速理解能力邊界與合作價值。</span>
+            </h2>
+            <p className="max-w-xl text-base leading-8 text-[#666c75]">
+              For a B2B site, the About section should quickly answer three questions: what TeraSilIC does, how far the capability extends, and why a partner should trust the company with integration work.
+            </p>
+          </div>
+
+          <div className="grid gap-5">
+            {storyItems.map((item) => (
+              <div
+                key={item.id}
+                className="rounded-[2rem] border border-[#e5e7eb] bg-white p-7 shadow-[0_12px_28px_rgba(47,49,54,0.04)] transition hover:-translate-y-1 hover:border-[#f1c2cf]"
+              >
+                <div className="text-sm font-medium tracking-[0.26em] text-[#d81f49]">{item.id}</div>
+                <h3 className="mt-4 text-2xl font-semibold text-[#2f3136]">{item.title}</h3>
+                <p className="mt-4 max-w-2xl text-base leading-7 text-[#666c75]">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="solutions" className="border-y border-[#e5e7eb] bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+          <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-[0.28em] text-[#d81f49]">Solutions & Downloadable PDFs</p>
+              <h2 className="mt-3 text-4xl font-semibold text-[#2f3136] md:text-5xl">把產品能力整理成更像 B2B sales tool 的下載中心。</h2>
+            </div>
+            <p className="max-w-2xl text-base leading-7 text-[#666c75]">
+              These cards should feel like downloadable commercial assets, not just website tiles. Each one needs a clear category, representative model references, and a direct path to a product page or PDF.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {pdfItems.map((item) => (
+              <div
+                key={item.title}
+                className="group rounded-[2rem] border border-[#e5e7eb] bg-[#fcfcfc] p-6 shadow-[0_12px_26px_rgba(47,49,54,0.04)] transition hover:-translate-y-1 hover:border-[#f1c2cf] hover:bg-white"
+              >
+                <div className="inline-flex items-center rounded-full border border-[#f3cad4] bg-[#fff3f6] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#b91e43]">
+                  {item.meta}
+                </div>
+                <div className="mt-2 text-xs font-medium tracking-[0.14em] text-[#9e6674]">{item.metaZh}</div>
+                <h3 className="mt-8 text-2xl font-semibold text-[#2f3136]">{item.title}</h3>
+                <div className="mt-2 text-lg font-medium text-[#5f656d]">{item.titleZh}</div>
+                <p className="mt-4 text-sm leading-7 text-[#666c75]">{item.description}</p>
+                <p className="mt-3 text-sm leading-7 text-[#7b8189]">{item.descriptionZh}</p>
+
+                <div className="mt-6 rounded-2xl border border-[#eceef1] bg-white p-4">
+                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[#969ca4]">
+                    Representative models / 代表型號
+                  </div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {item.models.map((model) => (
+                      <span
+                        key={model}
+                        className="rounded-full border border-[#e4e6ea] bg-[#fafafa] px-3 py-2 text-xs font-medium text-[#4f5660]"
+                      >
+                        {model}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-8 flex flex-col gap-3">
+                  <a
+                    href={item.viewHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-full bg-[#2f3136] px-4 py-3 text-center text-sm font-semibold text-white transition hover:-translate-y-0.5"
+                  >
+                    {item.viewLabel} / {item.viewLabelZh}
+                  </a>
+                  <a
+                    href="#"
+                    className="rounded-full border border-[#e0e3e8] bg-white px-4 py-3 text-center text-sm font-semibold text-[#2f3136] transition hover:bg-[#fafafa]"
+                  >
+                    {item.pdfLabel} / {item.pdfLabelZh}
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="updates" className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-sm uppercase tracking-[0.28em] text-[#d81f49]">News & Ideas</p>
+            <h2 className="mt-3 text-4xl font-semibold text-[#2f3136] md:text-5xl">用更成熟的 B2B editorial card 呈現最新動態。</h2>
+          </div>
+          <p className="max-w-2xl text-base leading-7 text-[#666c75]">
+            News should support business credibility: partnership progress, exhibition highlights, and category-level viewpoints. It should not visually compete with the core solution story.
+          </p>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-3">
+          {updateItems.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-[2rem] border border-[#e5e7eb] bg-white p-7 shadow-[0_12px_28px_rgba(47,49,54,0.04)] transition hover:-translate-y-1 hover:border-[#f1c2cf]"
+            >
+              <div className="flex items-center justify-between gap-4">
+                <span className="rounded-full border border-[#f3cad4] bg-[#fff3f6] px-3 py-1 text-xs font-semibold text-[#b91e43]">
+                  {item.badge}
+                </span>
+                <span className="text-sm text-[#9399a1]">{item.date}</span>
+              </div>
+              <h3 className="mt-6 text-2xl font-semibold leading-snug text-[#2f3136]">{item.title}</h3>
+              <p className="mt-4 text-base leading-7 text-[#666c75]">{item.description}</p>
+              <div className="mt-8 text-sm font-medium text-[#2f3136]">Read more →</div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="blog" className="border-t border-[#e5e7eb] bg-[#f8f8f9]">
+        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+          <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-[0.28em] text-[#d81f49]">Blog Reading</p>
+              <h2 className="mt-3 text-4xl font-semibold text-[#2f3136] md:text-5xl">
+                一頁內直接閱讀 blog，
+                <span className="block text-[#5f656d]">讓 thought leadership 成為首頁的一部分。</span>
+              </h2>
+            </div>
+            <p className="max-w-2xl text-base leading-7 text-[#666c75]">
+              This keeps the site closer to a modern B2B editorial product brand: readable, credible, and useful to decision-makers who need more than a short homepage pitch.
+            </p>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+            <article className="rounded-[2.4rem] border border-[#e5e7eb] bg-white p-8 shadow-[0_18px_40px_rgba(47,49,54,0.05)] md:p-10">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="rounded-full border border-[#f3cad4] bg-[#fff3f6] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#b91e43]">
+                  {selectedBlog.category}
+                </span>
+                <span className="text-sm text-[#959aa2]">{selectedBlog.date}</span>
+                <span className="text-sm text-[#959aa2]">{selectedBlog.readTime}</span>
+              </div>
+
+              <h3 className="mt-6 max-w-4xl text-3xl font-semibold leading-tight text-[#2f3136] md:text-5xl">
+                {selectedBlog.title}
+              </h3>
+              <div className="mt-3 text-lg font-medium text-[#5f656d]">{selectedBlog.titleZh}</div>
+
+              <p className="mt-6 text-base leading-8 text-[#666c75]">{selectedBlog.summary}</p>
+              <p className="mt-3 text-base leading-8 text-[#787e86]">{selectedBlog.summaryZh}</p>
+
+              <div className="mt-10 space-y-8 border-t border-[#eceef1] pt-8">
+                {selectedBlog.body.map((paragraph, index) => (
+                  <div key={`${selectedBlog.id}-paragraph-${index}`} className="space-y-3">
+                    <p className="text-[1.02rem] leading-8 text-[#394049]">{paragraph}</p>
+                    <p className="text-[1.02rem] leading-8 text-[#666c75]">{selectedBlog.bodyZh[index]}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <aside className="space-y-4">
+              <div className="rounded-[2rem] border border-[#e5e7eb] bg-white p-6 shadow-[0_12px_28px_rgba(47,49,54,0.04)]">
+                <div className="text-sm uppercase tracking-[0.24em] text-[#d81f49]">Recent posts</div>
+                <div className="mt-5 space-y-4">
+                  {blogPosts.map((post) => {
+                    const isActive = post.id === selectedBlogId;
+
+                    return (
+                      <button
+                        key={post.id}
+                        type="button"
+                        onClick={() => setSelectedBlogId(post.id)}
+                        className={`w-full rounded-[1.6rem] border p-5 text-left transition ${
+                          isActive
+                            ? "border-[#f1c2cf] bg-[#fff6f8] shadow-sm"
+                            : "border-[#eceef1] bg-[#fbfbfb] hover:border-[#e4c4ce] hover:bg-white"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#b91e43]">
+                            {post.category}
+                          </span>
+                          <span className="text-xs text-[#959aa2]">{post.readTime}</span>
+                        </div>
+                        <div className="mt-4 text-xl font-semibold leading-snug text-[#2f3136]">{post.title}</div>
+                        <div className="mt-2 text-sm font-medium leading-6 text-[#5f656d]">{post.titleZh}</div>
+                        <p className="mt-4 text-sm leading-7 text-[#666c75]">{post.summaryZh}</p>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="rounded-[2rem] border border-[#2f3136] bg-[#2f3136] p-6 text-white shadow-[0_16px_32px_rgba(47,49,54,0.12)]">
+                <div className="text-sm uppercase tracking-[0.22em] text-white/70">Editorial strategy</div>
+                <h3 className="mt-4 text-2xl font-semibold">讓 blog 支撐銷售與品牌，而不是成為孤立內容頁。</h3>
+                <p className="mt-4 text-base leading-7 text-white/72">
+                  On a B2B site, long-form content should reinforce product understanding, ecosystem relevance, and buyer confidence. That is why the blog belongs inside the one-page journey.
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="newsletter" className="border-t border-[#e5e7eb] bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-24 lg:px-10">
+          <div className="grid gap-8 rounded-[2.4rem] border border-[#e5e7eb] bg-[linear-gradient(135deg,rgba(216,31,73,0.05),rgba(255,255,255,1),rgba(44,121,196,0.05))] p-8 shadow-[0_30px_80px_rgba(47,49,54,0.06)] md:p-12 lg:grid-cols-[1fr_0.88fr] lg:items-center">
+            <div>
+              <p className="text-sm uppercase tracking-[0.28em] text-[#d81f49]">Newsletter</p>
+              <h2 className="mt-3 text-4xl font-semibold leading-tight text-[#2f3136] md:text-5xl">
+                訂閱 TeraSilIC Newsletter
+              </h2>
+              <p className="mt-5 max-w-xl text-base leading-8 text-[#666c75]">
+                Designed for a B2B audience: product updates, downloadable resources, partnership news, exhibition activity, and category thinking delivered in a consistent format.
+              </p>
+            </div>
+
+            <div className="rounded-[2rem] border border-[#e5e7eb] bg-white p-5 shadow-[0_12px_30px_rgba(47,49,54,0.05)]">
+              <div className="space-y-4">
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  aria-label="Your name"
+                  className="w-full rounded-2xl border border-[#e0e3e8] bg-[#fbfbfb] px-4 py-4 text-sm text-[#2f3136] outline-none placeholder:text-[#9aa0a7]"
+                />
+                <input
+                  type="email"
+                  placeholder="Email address"
+                  aria-label="Email address"
+                  className="w-full rounded-2xl border border-[#e0e3e8] bg-[#fbfbfb] px-4 py-4 text-sm text-[#2f3136] outline-none placeholder:text-[#9aa0a7]"
+                />
+                <button className="w-full rounded-full bg-[#d81f49] px-5 py-4 text-sm font-semibold text-white transition hover:-translate-y-0.5">
+                  Subscribe now
+                </button>
+                <p className="text-xs leading-6 text-[#8d939b]">
+                  Receive product updates, downloadable resources, events, and radar solution insights.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-[#e5e7eb] bg-[#f5f5f6]">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[1fr_auto] lg:px-10">
+          <div>
+            <div className="text-lg font-semibold text-[#2f3136]">TeraSilIC</div>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-[#737981]">
+              5F., No.205-2, Sec. 3, Beixin Rd., Xindian Dist., New Taipei City 231, Taiwan
+              <br />
+              +886-2-77515006 · sales@terasilic.com
+            </p>
+          </div>
+          <div className="flex flex-wrap items-start gap-3">
+            <a
+              href="#top"
+              className="rounded-full border border-[#e0e3e8] bg-white px-4 py-2 text-sm text-[#666c75] transition hover:text-[#2f3136]"
+            >
+              Back to top
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
