@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XYBERVU — Public-safety Rear Awareness Platform for eBike & eCargo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --xy-primary: #2c79c4;
+            --xy-dark: #243344;
+            --xy-light-bg: #f5f8fb;
+            --xy-card-bg: #ffffff;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        .tailwind-ready * {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .logo-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at top left, rgba(44, 121, 196, 0.10), transparent 24%),
+                        radial-gradient(circle at top right, rgba(97, 166, 209, 0.08), transparent 28%);
+        }
+    </style>
+</head>
+<body class="tailwind-ready min-h-screen bg-[#f5f8fb] text-[#243344]">
+    <!-- ==================== NAV ==================== -->
+    <nav class="sticky top-0 z-50 border-b border-[#d8e2ec] bg-white/95 backdrop-blur-md">
+        <div class="mx-auto max-w-7xl px-6 py-5 lg:px-10">
+            <div class="flex items-center justify-between rounded-full border border-[#d8e2ec] bg-white px-4 py-3 shadow-sm">
+                <div class="flex items-center gap-4">
+                    <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#243344] text-sm font-bold tracking-[0.2em] text-white logo-font">
+                        X
+                    </div>
+                    <div>
+                        <div class="text-2xl font-semibold tracking-[0.18em] logo-font text-[#243344]">XYBERVU</div>
+                        <div class="text-xs uppercase tracking-[0.18em] text-[#6f7f8f]">Ride Aware. Ride Secure.</div>
+                    </div>
+                </div>
+                
+                <div class="hidden items-center gap-8 text-sm font-medium text-[#677686] md:flex">
+                    <a href="#proposal" class="hover:text-[#2c79c4]">Proposal</a>
+                    <a href="#platform" class="hover:text-[#2c79c4]">Platform</a>
+                    <a href="#products" class="hover:text-[#2c79c4]">Solutions</a>
+                    <a href="#use-cases" class="hover:text-[#2c79c4]">Public Use Cases</a>
+                    <a href="#blog" class="hover:text-[#2c79c4]">Insights</a>
+                    <a href="#contact" class="hover:text-[#2c79c4]">Contact</a>
+                </div>
+                
+                <a href="#contact" 
+                   class="rounded-full bg-[#2c79c4] px-6 py-2.5 text-sm font-semibold text-white hover:-translate-y-0.5">
+                    Request Briefing
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="relative overflow-hidden border-b border-[#d8e2ec] bg-white hero-gradient">
+        <div class="relative mx-auto max-w-7xl px-6 py-6 lg:px-10">
+            <div class="grid gap-14 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:py-28">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center rounded-full border border-[#cfe0f2] bg-[#eef5fb] px-4 py-2 text-sm font-medium text-[#2c79c4]">
+                        Government-facing proposal homepage for eBike and eCargo safety
+                    </div>
+                    
+                    <h1 class="max-w-5xl text-5xl font-semibold leading-[1.02] tracking-tight md:text-7xl">
+                        Public-safety rear awareness platform
+                        <span class="block text-[#526476]">for eBike and eCargo deployment.</span>
+                    </h1>
+                    
+                    <p class="max-w-2xl text-lg leading-8 text-[#617285] md:text-xl">
+                        Reframed from the current Xybervu product site into a proposal-style homepage for public agencies, 
+                        pilot programs, and commercial mobility stakeholders — with a clearer focus on preventive safety, 
+                        trusted sensing, and deployment value.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#proposal" 
+                           class="rounded-full bg-[#2c79c4] px-8 py-4 text-base font-semibold text-white hover:-translate-y-0.5">
+                            View Proposal Summary
+                        </a>
+                        <a href="#products" 
+                           class="rounded-full border border-[#d8e2ec] bg-white px-8 py-4 text-base font-semibold text-[#243344] hover:bg-[#f8fbfe]">
+                            Review Solution Structure
+                        </a>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <div class="rounded-full border border-[#e1e8ef] bg-[#fbfdff] px-5 py-2 text-xs uppercase tracking-widest text-[#708091]">Public safety</div>
+                        <div class="rounded-full border border-[#e1e8ef] bg-[#fbfdff] px-5 py-2 text-xs uppercase tracking-widest text-[#708091]">Pilot-ready</div>
+                        <div class="rounded-full border border-[#e1e8ef] bg-[#fbfdff] px-5 py-2 text-xs uppercase tracking-widest text-[#708091]">eBike</div>
+                        <div class="rounded-full border border-[#e1e8ef] bg-[#fbfdff] px-5 py-2 text-xs uppercase tracking-widest text-[#708091]">eCargo</div>
+                        <div class="rounded-full border border-[#e1e8ef] bg-[#fbfdff] px-5 py-2 text-xs uppercase tracking-widest text-[#708091]">Radar + vision</div>
+                    </div>
+                </div>
+                
+                <div class="grid gap-5 self-end">
+                    <div class="rounded-[2rem] border border-[#d8e2ec] bg-white p-7 shadow-[0_24px_70px_rgba(36,51,68,0.08)]">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <p class="text-sm uppercase tracking-[0.22em] text-[#2c79c4]">Proposal framing</p>
+                                <h2 class="mt-3 text-3xl font-semibold leading-tight">From product website to mobility safety proposal homepage</h2>
+                            </div>
+                            <div class="rounded-full border border-[#cfe0f2] bg-[#eef5fb] px-3 py-1 text-xs font-medium text-[#2c79c4]">
+                                Formal Tone
+                            </div>
+                        </div>
+                        <p class="mt-5 text-base leading-7 text-[#647487]">
+                            This version is intentionally calmer, more formal, and more trust-oriented. 
+                            It is designed to be shown to agencies and stakeholders who evaluate public value, pilot feasibility, and deployment logic.
+                        </p>
+                        
+                        <div class="mt-8 grid gap-3">
+                            <div class="flex items-center justify-between rounded-2xl border border-[#e5edf4] bg-[#fafcff] px-4 py-4">
+                                <span class="text-sm font-medium">Public safety presentation direction</span>
+                                <span class="text-xs uppercase tracking-[0.2em] text-[#9aa7b4]">Ready</span>
+                            </div>
+                            <div class="flex items-center justify-between rounded-2xl border border-[#e5edf4] bg-[#fafcff] px-4 py-4">
+                                <span class="text-sm font-medium">Government and pilot-program friendly tone</span>
+                                <span class="text-xs uppercase tracking-[0.2em] text-[#9aa7b4]">Ready</span>
+                            </div>
+                            <div class="flex items-center justify-between rounded-2xl border border-[#e5edf4] bg-[#fafcff] px-4 py-4">
+                                <span class="text-sm font-medium">eBike and eCargo deployment narrative</span>
+                                <span class="text-xs uppercase tracking-[0.2em] text-[#9aa7b4]">Ready</span>
+                            </div>
+                            <div class="flex items-center justify-between rounded-2xl border border-[#e5edf4] bg-[#fafcff] px-4 py-4">
+                                <span class="text-sm font-medium">More formal than a consumer product landing page</span>
+                                <span class="text-xs uppercase tracking-[0.2em] text-[#9aa7b4]">Ready</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid gap-4 md:grid-cols-3">
+                        <div class="rounded-[1.6rem] border border-[#d8e2ec] bg-white p-5 shadow-[0_10px_24px_rgba(36,51,68,0.04)]">
+                            <div class="text-3xl font-semibold text-[#243344]">190m</div>
+                            <p class="mt-2 text-sm leading-6 text-[#6d7d8d]">vehicle detection range in current radar concept</p>
+                        </div>
+                        <div class="rounded-[1.6rem] border border-[#d8e2ec] bg-white p-5 shadow-[0_10px_24px_rgba(36,51,68,0.04)]">
+                            <div class="text-3xl font-semibold text-[#243344]">24GHz</div>
+                            <p class="mt-2 text-sm leading-6 text-[#6d7d8d]">radar platform for rear awareness and warning logic</p>
+                        </div>
+                        <div class="rounded-[1.6rem] border border-[#d8e2ec] bg-white p-5 shadow-[0_10px_24px_rgba(36,51,68,0.04)]">
+                            <div class="text-3xl font-semibold text-[#243344]">Vision Zero</div>
+                            <p class="mt-2 text-sm leading-6 text-[#6d7d8d]">policy-aligned preventive safety positioning</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROPOSAL SUMMARY ==================== -->
+    <section id="proposal" class="border-t border-[#d8e2ec] bg-[#f7fbfe]">
+        <div class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+            <div class="mb-12 grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
+                <div>
+                    <p class="text-sm uppercase tracking-[0.28em] text-[#2c79c4]">Proposal Summary</p>
+                    <h2 class="mt-3 text-4xl font-semibold leading-tight md:text-5xl">
+                        把安全講成公共價值，<span class="block text-[#55687a]">而不是只講成消費性產品功能。</span>
+                    </h2>
+                </div>
+                <p class="max-w-2xl text-base leading-8 text-[#647487]">
+                    This section reframes Xybervu as a safety proposal: a preventive sensing platform that can support safer urban cycling, pilot deployment, and higher-confidence eBike and eCargo operations.
+                </p>
+            </div>
+            
+            <div class="grid gap-6 lg:grid-cols-3">
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-white p-7 shadow-[0_12px_28px_rgba(36,51,68,0.04)]">
+                    <div class="text-2xl font-semibold">Preventive Safety Infrastructure</div>
+                    <div class="mt-2 text-sm font-medium text-[#55687a]">預防式安全基礎設施</div>
+                    <p class="mt-4 text-base leading-7 text-[#647487]">
+                        Frame the solution as part of safer urban mobility infrastructure, not just as a rider gadget.
+                    </p>
+                    <p class="mt-3 text-base leading-7 text-[#718090]">
+                        把方案定位成更安全城市移動的一部分，而不是單純的騎士配件。
+                    </p>
+                </div>
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-white p-7 shadow-[0_12px_28px_rgba(36,51,68,0.04)]">
+                    <div class="text-2xl font-semibold">Radar + Vision Public Value</div>
+                    <div class="mt-2 text-sm font-medium text-[#55687a]">雷達與視覺的公共價值</div>
+                    <p class="mt-4 text-base leading-7 text-[#647487]">
+                        Use radar certainty and visual confirmation to communicate reliability, transparency, and usability in real traffic conditions.
+                    </p>
+                    <p class="mt-3 text-base leading-7 text-[#718090]">
+                        以雷達的確定性與影像確認能力，說明它在真實交通情境中的可靠性、透明度與可用性。
+                    </p>
+                </div>
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-white p-7 shadow-[0_12px_28px_rgba(36,51,68,0.04)]">
+                    <div class="text-2xl font-semibold">Pilot-Ready Integration</div>
+                    <div class="mt-2 text-sm font-medium text-[#55687a]">可示範導入的整合能力</div>
+                    <p class="mt-4 text-base leading-7 text-[#647487]">
+                        Present Xybervu as a platform that can support pilots, municipal deployments, and OEM collaboration.
+                    </p>
+                    <p class="mt-3 text-base leading-7 text-[#718090]">
+                        把 Xybervu 表述成可支援 pilot、示範導入與 OEM 協作的安全平台。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PLATFORM ==================== -->
+    <section id="platform" class="border-t border-[#d8e2ec] bg-white">
+        <div class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+            <div class="mb-12 grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
+                <div>
+                    <p class="text-sm uppercase tracking-[0.28em] text-[#2c79c4]">Core platform</p>
+                    <h2 class="mt-3 text-4xl font-semibold leading-tight md:text-5xl">
+                        先定義平台，再說明產品，<span class="block text-[#55687a]">更符合政府與商務簡報的閱讀方式。</span>
+                    </h2>
+                </div>
+                <p class="max-w-2xl text-base leading-8 text-[#647487]">
+                    For public-sector and proposal audiences, platform framing is more persuasive than a long product feature list. It makes the deployment logic easier to understand.
+                </p>
+            </div>
+            
+            <div class="grid gap-6 lg:grid-cols-3">
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-[#fcfdff] p-7 shadow-[0_12px_28px_rgba(36,51,68,0.04)]">
+                    <div class="text-3xl font-semibold">Rear Awareness</div>
+                    <p class="mt-4 text-base leading-8 text-[#647487]">
+                        Identify fast-approaching rear vehicles earlier and reduce uncertainty in lane-change or turning scenarios.
+                    </p>
+                </div>
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-[#fcfdff] p-7 shadow-[0_12px_28px_rgba(36,51,68,0.04)]">
+                    <div class="text-3xl font-semibold">Trusted Alerts</div>
+                    <p class="mt-4 text-base leading-8 text-[#647487]">
+                        Use visual, audio, and vibration feedback to make warnings more understandable in real riding conditions.
+                    </p>
+                </div>
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-[#fcfdff] p-7 shadow-[0_12px_28px_rgba(36,51,68,0.04)]">
+                    <div class="text-3xl font-semibold">Deployment Logic</div>
+                    <p class="mt-4 text-base leading-8 text-[#647487]">
+                        Support pilot zones, demonstration programs, and integration conversations with OEM or mobility partners.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PRODUCTS / SOLUTIONS ==================== -->
+    <section id="products" class="border-t border-[#d8e2ec] bg-[#f8fbfe]">
+        <div class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+            <div class="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                <div>
+                    <p class="text-sm uppercase tracking-[0.28em] text-[#2c79c4]">Solutions</p>
+                    <h2 class="mt-3 text-4xl font-semibold md:text-5xl">把解決方案整理成更像提案附件的結構。</h2>
+                </div>
+                <p class="max-w-2xl text-base leading-7 text-[#647487]">
+                    These cards now read more like formal solution blocks than consumer product tiles, making them easier to place in a public-sector or stakeholder presentation context.
+                </p>
+            </div>
+            
+            <div class="grid gap-6 lg:grid-cols-2">
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-white p-7 shadow-[0_12px_26px_rgba(36,51,68,0.04)]">
+                    <div class="inline-flex items-center rounded-full border border-[#cfe0f2] bg-[#eef5fb] px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#2c79c4]">
+                        Core Solution
+                    </div>
+                    <h3 class="mt-8 text-3xl font-semibold">Rear Awareness Safety Platform</h3>
+                    <div class="mt-2 text-lg font-medium text-[#55687a]">後方感知安全平台</div>
+                    <p class="mt-4 text-base leading-7 text-[#647487]">
+                        A structured safety platform based on radar detection, smart alerts, and rear visibility enhancement for eBike and eCargo systems.
+                    </p>
+                    <p class="mt-3 text-base leading-7 text-[#718090]">
+                        以雷達偵測、智慧警示與後方可視性提升為核心，為 eBike 與 eCargo 系統建立結構化的安全平台。
+                    </p>
+                    
+                    <div class="mt-6 rounded-[1.5rem] border border-[#e5edf4] bg-[#fbfdff] p-5">
+                        <div class="text-xs font-semibold uppercase tracking-widest text-[#8fa0b0]">Key structure</div>
+                        <div class="mt-4 space-y-3">
+                            <div class="flex items-start gap-3 text-sm"><span class="mt-2 h-2 w-2 rounded-full bg-[#2c79c4]"></span>Rear radar detection</div>
+                            <div class="flex items-start gap-3 text-sm"><span class="mt-2 h-2 w-2 rounded-full bg-[#2c79c4]"></span>Visual + vibration + audio alerting</div>
+                            <div class="flex items-start gap-3 text-sm"><span class="mt-2 h-2 w-2 rounded-full bg-[#2c79c4]"></span>Suitable for cockpit or mirror-based interfaces</div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://www.xybervu.com/" target="_blank" 
+                       class="mt-8 inline-flex rounded-full bg-[#243344] px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5">
+                        View Solution Direction
+                    </a>
+                </div>
+                
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-white p-7 shadow-[0_12px_26px_rgba(36,51,68,0.04)]">
+                    <div class="inline-flex items-center rounded-full border border-[#cfe0f2] bg-[#eef5fb] px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#2c79c4]">
+                        Advanced Solution
+                    </div>
+                    <h3 class="mt-8 text-3xl font-semibold">Radar E-Mirror Family</h3>
+                    <div class="mt-2 text-lg font-medium text-[#55687a]">雷達電子後視鏡系列</div>
+                    <p class="mt-4 text-base leading-7 text-[#647487]">
+                        A higher-tier solution family combining rear camera context, radar-based warning logic, and display-assisted situational awareness.
+                    </p>
+                    <p class="mt-3 text-base leading-7 text-[#718090]">
+                        結合後方影像、雷達警示邏輯與顯示介面的高階方案系列，適合更完整的 situational awareness 敘事。
+                    </p>
+                    
+                    <div class="mt-6 rounded-[1.5rem] border border-[#e5edf4] bg-[#fbfdff] p-5">
+                        <div class="text-xs font-semibold uppercase tracking-widest text-[#8fa0b0]">Key structure</div>
+                        <div class="mt-4 space-y-3">
+                            <div class="flex items-start gap-3 text-sm"><span class="mt-2 h-2 w-2 rounded-full bg-[#2c79c4]"></span>Radar + low-light camera</div>
+                            <div class="flex items-start gap-3 text-sm"><span class="mt-2 h-2 w-2 rounded-full bg-[#2c79c4]"></span>Display-based rear confirmation</div>
+                            <div class="flex items-start gap-3 text-sm"><span class="mt-2 h-2 w-2 rounded-full bg-[#2c79c4]"></span>Foundation for future sensor fusion programs</div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://www.xybervu.com/" target="_blank" 
+                       class="mt-8 inline-flex rounded-full bg-[#243344] px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5">
+                        View Solution Direction
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PUBLIC USE CASES (已新增 3 個 eBike 專屬安全案例) ==================== -->
+    <section id="use-cases" class="border-t border-[#d8e2ec] bg-white">
+        <div class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+            <div class="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                <div>
+                    <p class="text-sm uppercase tracking-[0.28em] text-[#2c79c4]">Public Use Cases</p>
+                    <h2 class="mt-3 text-4xl font-semibold md:text-5xl">讓 eBike 與 eCargo 對政府機關更有可讀性。</h2>
+                </div>
+                <p class="max-w-2xl text-base leading-7 text-[#647487]">
+                    Public audiences respond better to use cases that connect technology with operational safety, pilot feasibility, and urban-mobility outcomes.
+                </p>
+            </div>
+            
+            <div class="grid gap-6 lg:grid-cols-3">
+                <!-- 原有 3 個 -->
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-[#fcfdff] p-7 shadow-[0_12px_26px_rgba(36,51,68,0.04)]">
+                    <div class="text-3xl font-semibold">Urban eBike Safety</div>
+                    <div class="mt-2 text-base font-medium text-[#55687a]">都會 eBike 安全方案</div>
+                    <p class="mt-5 text-base leading-8 text-[#647487]">
+                        Supports safer riding in complex traffic environments through rear-approaching vehicle awareness and more intuitive warning flow.
+                    </p>
+                    <p class="mt-3 text-base leading-8 text-[#718090]">
+                        透過後方來車感知與更直覺的警示流程，支援都會複雜交通環境中的 eBike 安全騎乘。
+                    </p>
+                </div>
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-[#fcfdff] p-7 shadow-[0_12px_26px_rgba(36,51,68,0.04)]">
+                    <div class="text-3xl font-semibold">eCargo Fleet Visibility</div>
+                    <div class="mt-2 text-base font-medium text-[#55687a]">eCargo 車隊後方可視性</div>
+                    <p class="mt-5 text-base leading-8 text-[#647487]">
+                        A stronger fit for larger vehicles that need improved rear awareness, reliable warnings, and safer interactions with surrounding traffic.
+                    </p>
+                    <p class="mt-3 text-base leading-8 text-[#718090]">
+                        特別適合體積更大的 eCargo 載具，強化後方可視性、警示可靠性，以及與周圍車流的安全互動。
+                    </p>
+                </div>
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-[#fcfdff] p-7 shadow-[0_12px_26px_rgba(36,51,68,0.04)]">
+                    <div class="text-3xl font-semibold">Government Pilot Programs</div>
+                    <div class="mt-2 text-base font-medium text-[#55687a]">政府示範導入計畫</div>
+                    <p class="mt-5 text-base leading-8 text-[#647487]">
+                        Useful for demonstration zones, urban safety initiatives, and mobility pilot programs that need a credible preventive safety story.
+                    </p>
+                    <p class="mt-3 text-base leading-8 text-[#718090]">
+                        適合示範場域、城市安全計畫與 mobility pilot program，讓政府單位能更清楚理解預防式安全的導入價值。
+                    </p>
+                </div>
+
+                <!-- 新增的 3 個 eBike 安全案例 -->
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-[#fcfdff] p-7 shadow-[0_12px_26px_rgba(36,51,68,0.04)]">
+                    <div class="text-3xl font-semibold">Commuter eBike Safety</div>
+                    <div class="mt-2 text-base font-medium text-[#55687a]">通勤 eBike 安全方案</div>
+                    <p class="mt-5 text-base leading-8 text-[#647487]">
+                        Early rear-vehicle detection in busy commuter corridors reduces blind-spot incidents and builds rider confidence during peak-hour traffic.
+                    </p>
+                    <p class="mt-3 text-base leading-8 text-[#718090]">
+                        在繁忙通勤路段提供早期後方車輛偵測，降低盲點事故風險並提升尖峰時段的騎乘信心。
+                    </p>
+                </div>
+                
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-[#fcfdff] p-7 shadow-[0_12px_26px_rgba(36,51,68,0.04)]">
+                    <div class="text-3xl font-semibold">Night &amp; Low-Light eBike Safety</div>
+                    <div class="mt-2 text-base font-medium text-[#55687a]">夜間與低光源 eBike 安全</div>
+                    <p class="mt-5 text-base leading-8 text-[#647487]">
+                        Radar maintains reliable detection even in complete darkness while vision provides context, making night commuting significantly safer.
+                    </p>
+                    <p class="mt-3 text-base leading-8 text-[#718090]">
+                        雷達在完全黑暗環境中仍能可靠偵測，視覺技術則提供情境理解，讓夜間通勤大幅提升安全性。
+                    </p>
+                </div>
+                
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-[#fcfdff] p-7 shadow-[0_12px_26px_rgba(36,51,68,0.04)]">
+                    <div class="text-3xl font-semibold">Shared Mobility eBike Safety</div>
+                    <div class="mt-2 text-base font-medium text-[#55687a]">共享 eBike 車隊安全</div>
+                    <p class="mt-5 text-base leading-8 text-[#647487]">
+                        Designed for municipal bike-sharing fleets and campus operators — improves operational safety, reduces liability, and increases user adoption.
+                    </p>
+                    <p class="mt-3 text-base leading-8 text-[#718090]">
+                        專為市政共享單車車隊與校園營運設計，提升操作安全性、降低責任風險，並提高使用者採用率。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== INSIGHTS / BLOG ==================== -->
+    <section id="blog" class="border-t border-[#d8e2ec] bg-[#f8fbfe]">
+        <div class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+            <div class="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                <div>
+                    <p class="text-sm uppercase tracking-[0.28em] text-[#2c79c4]">Insights</p>
+                    <h2 class="mt-3 text-4xl font-semibold md:text-5xl">
+                        一頁內直接閱讀政策與部署邏輯，<span class="block text-[#55687a]">讓網站更像正式提案首頁。</span>
+                    </h2>
+                </div>
+                <p class="max-w-2xl text-base leading-7 text-[#647487]">
+                    This section helps public-sector readers understand why the solution matters beyond the device itself: policy fit, operational value, and safer mobility outcomes.
+                </p>
+            </div>
+            
+            <div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+                <article id="main-blog" class="rounded-[2.4rem] border border-[#d8e2ec] bg-white p-8 shadow-[0_18px_40px_rgba(36,51,68,0.05)] md:p-10">
+                    <!-- JS injected -->
+                </article>
+                
+                <aside class="space-y-4">
+                    <div class="rounded-[2rem] border border-[#d8e2ec] bg-white p-6 shadow-[0_12px_28px_rgba(36,51,68,0.04)]">
+                        <div class="text-sm uppercase tracking-[0.24em] text-[#2c79c4]">Proposal reading list</div>
+                        <div id="blog-list" class="mt-5 space-y-4">
+                            <!-- JS injected -->
+                        </div>
+                    </div>
+                    
+                    <div class="rounded-[2rem] border border-[#243344] bg-[#243344] p-6 text-white shadow-[0_16px_32px_rgba(36,51,68,0.12)]">
+                        <div class="text-sm uppercase tracking-[0.22em] text-white/70">Design note</div>
+                        <h3 class="mt-4 text-2xl font-semibold">首頁的氣質要更像正式簡報首頁，而不是一般產品 landing page。</h3>
+                        <p class="mt-4 text-base leading-7 text-white/72">
+                            That means more trust, less hype; clearer headings, calmer spacing, and section names that sound ready for stakeholder review.
+                        </p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section id="contact" class="border-t border-[#d8e2ec] bg-white">
+        <div class="mx-auto max-w-6xl px-6 py-24 lg:px-10">
+            <div class="grid gap-8 rounded-[2.4rem] border border-[#d8e2ec] bg-[linear-gradient(135deg,rgba(44,121,196,0.06),rgba(255,255,255,1),rgba(97,166,209,0.05))] p-8 shadow-[0_30px_80px_rgba(36,51,68,0.06)] md:p-12 lg:grid-cols-[1fr_0.88fr] lg:items-center">
+                <div>
+                    <p class="text-sm uppercase tracking-[0.28em] text-[#2c79c4]">Contact / Request Briefing</p>
+                    <h2 class="mt-3 text-4xl font-semibold leading-tight md:text-5xl">
+                        Start a conversation about pilots, deployments, or government collaboration.
+                    </h2>
+                    <p class="mt-5 max-w-xl text-base leading-8 text-[#647487]">
+                        This closing section is no longer a simple consumer contact form. It is framed like a briefing or proposal request, suitable for agencies, partners, and deployment discussions.
+                    </p>
+                </div>
+                
+                <div class="rounded-[2rem] border border-[#d8e2ec] bg-white p-5 shadow-[0_12px_30px_rgba(36,51,68,0.05)]">
+                    <div class="space-y-4">
+                        <input type="text" placeholder="Your name" 
+                               class="w-full rounded-2xl border border-[#e0e7ee] bg-[#fbfdff] px-4 py-4 text-sm outline-none placeholder:text-[#9aa7b4]">
+                        <input type="text" placeholder="Organization / Agency" 
+                               class="w-full rounded-2xl border border-[#e0e7ee] bg-[#fbfdff] px-4 py-4 text-sm outline-none placeholder:text-[#9aa7b4]">
+                        <input type="email" placeholder="Email address" 
+                               class="w-full rounded-2xl border border-[#e0e7ee] bg-[#fbfdff] px-4 py-4 text-sm outline-none placeholder:text-[#9aa7b4]">
+                        
+                        <button onclick="alert('Briefing request received. Thank you! (Demo)')" 
+                                class="w-full rounded-full bg-[#2c79c4] py-4 text-sm font-semibold text-white hover:-translate-y-0.5">
+                            Request Briefing
+                        </button>
+                        
+                        <p class="text-xs leading-6 text-[#8997a4]">
+                            For agency briefings, pilot discussions, partner inquiries, and deployment consultations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#243344] py-12 text-white">
+        <div class="mx-auto max-w-7xl px-6 text-center text-sm lg:px-10">
+            <div class="flex justify-center gap-8 text-[#8fa0b0]">
+                <a href="https://www.xybervu.com/" target="_blank" class="hover:text-white">Official Site</a>
+                <a href="#" class="hover:text-white">Privacy</a>
+                <a href="#" class="hover:text-white">© 2026 Xybervu Inc.</a>
+            </div>
+            <p class="mt-6 text-xs text-[#6f7f8f]">已新增 3 個全新 eBike 安全案例（通勤、夜間、共享車隊），總計 6 個使用案例。顏色完全參照 xybervu.com 品牌。</p>
+        </div>
+    </footer>
+
+    <script>
+        const blogPosts = [
+            {
+                id: "public-safety-standard",
+                category: "Featured Insight",
+                date: "2026",
+                readTime: "5 min read",
+                title: "Why preventive safety should become a new standard for urban cycling",
+                titleZh: "為什麼預防式安全應成為城市騎行的新標準",
+                summary: "This reading block is written more like a proposal narrative for public-sector audiences: policy relevance, operational value, and public-safety benefit — not only product features.",
+                summaryZh: "這個閱讀區更像寫給公部門看的提案敘事：強調政策相關性、實際運作價值與公共安全效益，而不只是產品規格。",
+                body: [
+                    "For a government-facing homepage, the key message should not be that the device is impressive. The key message should be that preventive rear-awareness can improve urban cycling confidence, reduce blind-spot risk, and support safer interaction between riders and surrounding traffic.",
+                    "This is where Xybervu becomes easier to evaluate as a platform. Radar enables detection certainty. Vision adds context. Multi-modal alerts improve usability. Together they form a preventive safety framework that can be discussed in policy, pilot, and deployment terms.",
+                    "That makes the homepage more suitable for agencies, city stakeholders, and public-private collaboration discussions. It shifts the narrative from consumer gadget appeal toward a more formal public-safety and deployment proposition."
+                ],
+                bodyZh: [
+                    "對政府機關來說，首頁最重要的訊息不應該只是『產品很厲害』，而是『預防式後方感知能否提升城市騎行信心、降低盲點風險、並改善騎士與周圍車流之間的安全互動』。",
+                    "這也是 Xybervu 更容易被理解成平台方案的地方：雷達提供檢知確定性，視覺補足情境理解，多模態警示強化使用性。三者結合後，才構成一個能用政策、pilot 與部署語言溝通的 preventive safety framework。",
+                    "如此一來，首頁就更適合拿給政府單位、城市交通相關利害關係人，以及公私協作的對象看。整體敘事也會從 consumer gadget appeal，轉向更正式的公共安全與導入提案。"
+                ]
+            },
+            {
+                id: "ecargo-public-value",
+                category: "Use Case",
+                date: "2026",
+                readTime: "4 min read",
+                title: "Why eCargo is a strong public-safety use case",
+                titleZh: "為什麼 eCargo 是很強的公共安全應用場景",
+                summary: "eCargo introduces a practical and policy-relevant scenario where rear awareness, visibility, and safer urban operations matter more than lifestyle messaging.",
+                summaryZh: "eCargo 帶來的是一個更務實、也更符合政策語境的場景：後方感知、可視性與都市運輸安全，比生活風格敘事更重要。",
+                body: [
+                    "Compared with consumer-only cycling language, eCargo has stronger public value. It connects road safety, delivery operations, vehicle visibility, and rider confidence into one policy-friendly story.",
+                    "That is why this website version places eCargo alongside eBike. It allows Xybervu to speak not only to brands and OEMs, but also to agencies evaluating safer mobility and pilot deployment opportunities."
+                ],
+                bodyZh: [
+                    "相較於偏消費型的騎乘語言，eCargo 更有公共價值。它把道路安全、配送營運、車輛可視性與騎士信心串成一個更適合政策討論的故事。",
+                    "因此這個版本會把 eCargo 與 eBike 並列，讓 Xybervu 不只對品牌與 OEM 說話，也能對正在評估更安全移動方案與示範導入機會的政府單位說話。"
+                ]
+            },
+            {
+                id: "proposal-framing",
+                category: "Proposal Logic",
+                date: "2026",
+                readTime: "3 min read",
+                title: "How to present mobility safety as a proposal, not just a product page",
+                titleZh: "如何把 mobility safety 講成提案，而不是單純產品頁",
+                summary: "The homepage should structure trust, value, and implementation logic in a sequence that feels formal and proposal-ready.",
+                summaryZh: "首頁應該用更正式的順序去組織信任、價值與導入邏輯，讓它看起來像提案，而不是只是商品介紹。",
+                body: [
+                    "Proposal-oriented websites work differently from consumer landing pages. They need clearer public value, more formal section titles, and a stronger explanation of why deployment matters.",
+                    "That is why this version uses language such as safety platform, pilot readiness, public use cases, and policy-aligned preventive safety. It helps the website feel credible in front of government audiences."
+                ],
+                bodyZh: [
+                    "提案型網站和消費型 landing page 的邏輯不同。前者需要更清楚的公共價值、更正式的段落命名，以及更強的導入理由。",
+                    "所以這個版本刻意使用 safety platform、pilot readiness、public use cases、policy-aligned preventive safety 這類語言，讓網站在政府機關面前更有說服力。"
+                ]
+            }
+        ]
+        
+        let selectedBlogId = "public-safety-standard"
+        
+        function renderBlog(post) {
+            const container = document.getElementById('main-blog')
+            container.innerHTML = `
+                <div class="flex flex-wrap items-center gap-3">
+                    <span class="rounded-full border border-[#cfe0f2] bg-[#eef5fb] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#2c79c4]">
+                        ${post.category}
+                    </span>
+                    <span class="text-sm text-[#95a3b0]">${post.date}</span>
+                    <span class="text-sm text-[#95a3b0]">${post.readTime}</span>
+                </div>
+                <h3 class="mt-6 max-w-4xl text-3xl font-semibold leading-tight md:text-5xl">${post.title}</h3>
+                <div class="mt-3 text-lg font-medium text-[#55687a]">${post.titleZh}</div>
+                <p class="mt-6 text-base leading-8 text-[#647487]">${post.summary}</p>
+                <p class="mt-3 text-base leading-8 text-[#748393]">${post.summaryZh}</p>
+                
+                <div class="mt-10 space-y-8 border-t border-[#e7eef5] pt-8">
+                    ${post.body.map((paragraph, i) => `
+                        <div class="space-y-3">
+                            <p class="text-[1.02rem] leading-8 text-[#33485d]">${paragraph}</p>
+                            <p class="text-[1.02rem] leading-8 text-[#647487]">${post.bodyZh[i]}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `
+        }
+        
+        function renderBlogList() {
+            const container = document.getElementById('blog-list')
+            container.innerHTML = blogPosts.map(post => {
+                const isActive = post.id === selectedBlogId
+                return `
+                    <button onclick="selectBlog('${post.id}')" 
+                            class="w-full rounded-[1.6rem] border p-5 text-left ${isActive ? 'border-[#cfe0f2] bg-[#eef5fb] shadow-sm' : 'border-[#e6edf4] bg-[#fbfdff] hover:border-[#d4e2ef] hover:bg-white'}">
+                        <div class="flex items-center justify-between gap-3">
+                            <span class="text-xs font-semibold uppercase tracking-[0.18em] text-[#2c79c4]">${post.category}</span>
+                            <span class="text-xs text-[#95a3b0]">${post.readTime}</span>
+                        </div>
+                        <div class="mt-4 text-xl font-semibold leading-snug">${post.title}</div>
+                        <div class="mt-2 text-sm font-medium leading-6 text-[#55687a]">${post.titleZh}</div>
+                        <p class="mt-4 text-sm leading-7 text-[#647487]">${post.summaryZh}</p>
+                    </button>
+                `
+            }).join('')
+        }
+        
+        function selectBlog(id) {
+            selectedBlogId = id
+            const post = blogPosts.find(p => p.id === id)
+            if (post) {
+                renderBlog(post)
+                renderBlogList()
+            }
+        }
+        
+        window.onload = function() {
+            tailwind.config = { content: [] }
+            const firstPost = blogPosts[0]
+            renderBlog(firstPost)
+            renderBlogList()
+            console.log('%c✅ Xybervu Proposal Template 已更新！新增 3 個 eBike 安全案例（通勤、夜間、共享車隊）', 'background:#2c79c4;color:white;padding:4px 8px;border-radius:4px')
+        }
+    </script>
+</body>
+</html>
